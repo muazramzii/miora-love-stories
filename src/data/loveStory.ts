@@ -8,8 +8,8 @@ import type { LoveStory } from '../types/loveStory'
  * Photos are free-licence images from Unsplash (Unsplash License);
  * credits are listed in the README.
  */
-const photo = (id: string, width = 1200) =>
-  `https://images.unsplash.com/photo-${id}?fm=jpg&q=75&w=${width}&auto=format&fit=crop`
+const photo = (id: string, width = 1200, quality = 75) =>
+  `https://images.unsplash.com/photo-${id}?fm=jpg&q=${quality}&w=${width}&auto=format&fit=crop`
 
 export const loveStory: LoveStory = {
   partnerNames: ['Alya', 'Adam'],
@@ -90,7 +90,7 @@ export const loveStory: LoveStory = {
     },
     {
       id: 'dunes',
-      src: photo('1757924787010-80d15d292726'),
+      src: photo('1757924787010-80d15d292726', 800, 45), // fine sand texture compresses poorly: keep it small
       alt: 'Rippled sand with a trail of footprints at sunset',
       caption: 'Wherever the path goes',
     },

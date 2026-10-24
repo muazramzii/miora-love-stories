@@ -27,6 +27,10 @@
   background: var(--color-accent);
 }
 
+.timeline__body {
+  min-width: 0;
+}
+
 .timeline__date {
   margin-bottom: var(--space-2);
   font-size: var(--text-xs);

@@ -18,13 +18,18 @@ export default function Lightbox({ photos, index, onClose, onIndexChange }: Ligh
 
   const go = (step: number) => onIndexChange((index + step + count) % count)
 
-  // Lock background scroll while open, and restore it on close.
+  // Lock background scroll while open, and restore it on close. Padding offsets the
+  // vanishing scrollbar so the page behind does not jump sideways.
   useEffect(() => {
-    const previous = document.body.style.overflow
+    const { overflow, paddingRight } = document.body.style
+    const root = document.documentElement
+    const scrollbar = root.clientWidth > 0 ? Math.max(0, window.innerWidth - root.clientWidth) : 0
     document.body.style.overflow = 'hidden'
+    if (scrollbar > 0) document.body.style.paddingRight = `${scrollbar}px`
     closeRef.current?.focus()
     return () => {
-      document.body.style.overflow = previous
+      document.body.style.overflow = overflow
+      document.body.style.paddingRight = paddingRight
     }
   }, [])
 
@@ -65,7 +70,7 @@ export default function Lightbox({ photos, index, onClose, onIndexChange }: Ligh
       className="lightbox"
       role="dialog"
       aria-modal="true"
-      aria-label={`Photo viewer: ${photo.caption}`}
+      aria-label="Photo viewer"
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose()
       }}
@@ -76,9 +81,10 @@ export default function Lightbox({ photos, index, onClose, onIndexChange }: Ligh
 
       <figure className="lightbox__figure">
         <PhotoImage key={photo.id} className="lightbox__image" src={photo.src} alt={photo.alt} loading="eager" />
-        <figcaption className="lightbox__caption">
+        {/* Live region so screen readers hear the new caption and position after Previous/Next */}
+        <figcaption className="lightbox__caption" aria-live="polite">
           {photo.caption}
-          <span className="lightbox__count" aria-live="polite">
+          <span className="lightbox__count">
             {index + 1} / {count}
           </span>
         </figcaption>

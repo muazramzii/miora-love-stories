@@ -16,6 +16,9 @@
 }
 
 .nav__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target);
   font-family: var(--font-display);
   font-size: var(--text-lg);
   color: var(--color-accent);

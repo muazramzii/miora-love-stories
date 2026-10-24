@@ -32,7 +32,7 @@ export default function LoveLetter() {
               <span className="envelope__action">{open ? 'Close the letter' : 'Open the letter'}</span>
             </button>
 
-            <div id="letter-body" role="region" aria-label={letterTitle}>
+            <div id="letter-body">
               {open && (
                 <article className="letter__paper">
                   {letterBody.map((paragraph) => (

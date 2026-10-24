@@ -41,6 +41,15 @@ p {
   margin: 0;
 }
 
+/* Long unbroken words (names, URLs) wrap instead of overflowing */
+h1,
+h2,
+h3,
+p,
+figcaption {
+  overflow-wrap: break-word;
+}
+
 a {
   color: inherit;
 }
