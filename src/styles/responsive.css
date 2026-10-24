@@ -1,0 +1,70 @@
+/* Mobile-first enhancements. Breakpoints are documented in tokens.css. */
+
+/* md: 768px */
+@media (min-width: 48rem) {
+  :root {
+    --gutter: var(--space-7);
+  }
+
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .hero__frame {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* lg: 1024px - inline navigation (the toggle menu is used below this) */
+@media (min-width: 64rem) {
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__menu,
+  .nav__menu--open {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-6);
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .nav__links {
+    flex-direction: row;
+    gap: var(--space-6);
+  }
+
+  .nav__link {
+    border-bottom: 0;
+  }
+
+  .nav__brand,
+  .nav__menu .btn {
+    white-space: nowrap;
+  }
+
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--space-9);
+  }
+
+  .footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    text-align: left;
+  }
+}
+
+/* xl: 1440px */
+@media (min-width: 90rem) {
+  .container {
+    max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  }
+}

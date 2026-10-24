@@ -1,0 +1,24 @@
+/* App-level layout only. Shared foundations live in styles/global.css. */
+#top {
+  position: absolute;
+  top: 0;
+}
+
+.placeholder-section {
+  position: relative;
+  min-height: 30vh;
+  align-content: center;
+}
+
+.placeholder-section__rule {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(100% - 2 * var(--gutter), var(--width-content));
+  transform: translateX(-50%);
+}
+
+.placeholder-section__label {
+  margin-top: var(--space-4);
+  text-align: center;
+}

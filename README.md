@@ -6,7 +6,9 @@ Miora Love Stories is the first mini-website product under **Miora Studio**: a m
 
 ## Status
 
-**Phase 0 (project setup) only.** The app currently renders a placeholder. No product UI has been built yet.
+**Phase 1 (design system and layout) complete.** Navigation, hero, footer and reusable UI foundations are built using fictional sample data. The love letter, timeline, gallery and closing message are temporary placeholder sections, built in later phases.
+
+The hero photo is loaded from Unsplash (photo by Aurela Redenica, Unsplash License). A CSS fallback is shown if it fails to load. Fonts (Playfair Display, Inter) load from Google Fonts with system fallbacks.
 
 ## Technology stack
 
@@ -56,12 +58,13 @@ Before committing, run `npm run lint && npm run typecheck && npm test && npm run
 
 ```
 src/
-  components/   reusable UI pieces
-  sections/     page sections (hero, letter, timeline, gallery, closing)
+  app/          App shell and app-level CSS
+  components/   layout/ (Navigation, Footer) and ui/ (Button, SectionHeading)
+  features/     one folder per page feature (hero now; letter, timeline, gallery later)
   hooks/        custom React hooks
-  data/         static story content
+  data/         static (fictional sample) story content
   types/        shared TypeScript types
-  styles/       global CSS and design tokens
+  styles/       tokens.css (design tokens), global.css, responsive.css
   assets/       images and other static assets
   test/         test setup
 ```
