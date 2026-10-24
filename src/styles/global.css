@@ -79,9 +79,13 @@ a {
   padding-inline: var(--gutter);
 }
 
-/* Section rhythm */
+/* Section rhythm: a thin divider, then generous space above the content */
 .section {
-  padding-block: var(--section-space);
+  padding-bottom: var(--section-space);
+}
+
+.section__inner {
+  padding-top: var(--section-space);
 }
 
 /* Thin divider */
@@ -166,21 +170,6 @@ a {
 .btn--small {
   min-height: var(--touch-target);
   padding-inline: var(--space-5);
-}
-
-/* Temporary placeholder marker for sections built in later phases */
-.placeholder-section {
-  display: grid;
-  place-items: center;
-  min-height: 40vh;
-  text-align: center;
-}
-
-.placeholder-section__label {
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--color-text-muted);
 }
 
 @media (prefers-reduced-motion: reduce) {

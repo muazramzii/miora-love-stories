@@ -6,9 +6,13 @@ Miora Love Stories is the first mini-website product under **Miora Studio**: a m
 
 ## Status
 
-**Phase 1 (design system and layout) complete.** Navigation, hero, footer and reusable UI foundations are built using fictional sample data. The love letter, timeline, gallery and closing message are temporary placeholder sections, built in later phases.
+**Phase 2 (core features) complete.** The site has a hero, an interactive love letter, a relationship timeline, a memory gallery with lightbox, and a closing message. All content is fictional sample data in `src/data/loveStory.ts` (names, dates, letter, timeline, gallery, closing message), typed by `src/types/loveStory.ts`. Edit that one file to change the story.
 
-The hero photo is loaded from Unsplash (photo by Aurela Redenica, Unsplash License). A CSS fallback is shown if it fails to load. Fonts (Playfair Display, Inter) load from Google Fonts with system fallbacks.
+Fonts (Playfair Display, Inter) load from Google Fonts with system fallbacks. Photos load from Unsplash (Unsplash License); a CSS fallback is shown if one fails.
+
+### Photo credits
+
+Hero and gallery photos by Aurela Redenica, Aniki Photos, Eduardo Drapier, Sixteen Miles Out, Duc Van and Stefanie Jockschat, via [Unsplash](https://unsplash.com).
 
 ## Technology stack
 
@@ -60,22 +64,23 @@ Before committing, run `npm run lint && npm run typecheck && npm test && npm run
 src/
   app/          App shell and app-level CSS
   components/   layout/ (Navigation, Footer) and ui/ (Button, SectionHeading)
-  features/     one folder per page feature (hero now; letter, timeline, gallery later)
+  features/     hero, love-letter, timeline, gallery (with Lightbox), closing
   hooks/        custom React hooks
-  data/         static (fictional sample) story content
-  types/        shared TypeScript types
+  data/         loveStory.ts: all fictional sample content
+  types/        loveStory.ts: content types
+  utils/        small helpers (date formatting)
   styles/       tokens.css (design tokens), global.css, responsive.css
   assets/       images and other static assets
   test/         test setup
 ```
 
-## Planned features
+## Features
 
 - Romantic hero section
 - Interactive love letter
 - Relationship timeline
-- Memory photo gallery with lightbox
-- Closing message
+- Memory photo gallery with accessible lightbox (Escape, arrow keys, focus return, scroll lock)
+- Closing message with back-to-top link
 
 ## Privacy
 
