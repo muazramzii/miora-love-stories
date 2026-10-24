@@ -1,0 +1,45 @@
+/* Minimal Elegant design tokens (placeholders; refined in later phases) */
+:root {
+  --color-bg: #faf7f5;
+  --color-text: #2b2327;
+  --color-muted: #7a6d73;
+  --color-accent: #b5646f;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+.placeholder {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.placeholder h1 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+.placeholder p {
+  margin: 0;
+  color: var(--color-muted);
+}
