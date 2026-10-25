@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
-import Button from '../ui/Button'
+import { sections } from '../../data/navigation'
+import { loveStory } from '../../data/loveStory'
+import Icon from '../ui/Icon'
 import './Navigation.css'
 
-const links = [
-  { href: '#letter', label: 'Letter' },
-  { href: '#timeline', label: 'Timeline' },
-  { href: '#gallery', label: 'Memories' },
-  { href: '#closing', label: 'Closing' },
-]
+type NavigationProps = {
+  activeId: string
+}
 
-export default function Navigation() {
+export default function Navigation({ activeId }: NavigationProps) {
   const [open, setOpen] = useState(false)
   const toggleRef = useRef<HTMLButtonElement>(null)
+  const activeLabel = sections.find((section) => section.id === activeId)?.label ?? sections[0].label
 
   useEffect(() => {
     if (!open) return
@@ -28,41 +28,46 @@ export default function Navigation() {
   const close = () => setOpen(false)
 
   return (
-    <header className="nav">
-      <div className="container nav__bar">
-        <a className="nav__brand" href="#top" onClick={close}>
-          Miora Love Stories
-        </a>
-
+    <header className="site-header">
+      <div className="site-header__inner">
         <button
           ref={toggleRef}
           type="button"
-          className="nav__toggle"
+          className="site-header__toggle"
           aria-expanded={open}
           aria-controls="site-menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((value) => !value)}
         >
-          {open ? 'Close' : 'Menu'}
+          <Icon name={open ? 'close' : 'menu'} size={22} />
         </button>
 
-        <nav
-          id="site-menu"
-          aria-label="Primary"
-          className={open ? 'nav__menu nav__menu--open' : 'nav__menu'}
-        >
-          <ul className="nav__links">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a className="nav__link" href={link.href} onClick={close}>
-                  {link.label}
+        <a className="brand" href="#our-story" onClick={close}>
+          <span className="brand__name">Miora</span>
+          <span className="brand__tag">Love Stories</span>
+          <span className="brand__section" aria-hidden="true">
+            {activeLabel}
+          </span>
+        </a>
+
+        <nav id="site-menu" aria-label="Primary" className={open ? 'site-nav site-nav--open' : 'site-nav'}>
+          <ul className="site-nav__list">
+            {sections.map((section) => (
+              <li key={section.id}>
+                <a
+                  className="site-nav__link"
+                  href={`#${section.id}`}
+                  aria-current={section.id === activeId ? 'location' : undefined}
+                  onClick={close}
+                >
+                  {section.label}
                 </a>
               </li>
             ))}
           </ul>
-          <Button href="#letter" variant="secondary" small onClick={close}>
-            Explore our story
-          </Button>
         </nav>
+
+        <span className="site-header__keepsake">Keepsake {loveStory.keepsakeNumber}</span>
       </div>
     </header>
   )

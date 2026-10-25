@@ -3,3 +3,10 @@
   position: absolute;
   top: 0;
 }
+
+/* Keep content clear of the fixed mobile tab bar */
+@media (max-width: 47.99rem) {
+  body {
+    padding-bottom: calc(var(--tabbar-height) + env(safe-area-inset-bottom, 0px));
+  }
+}

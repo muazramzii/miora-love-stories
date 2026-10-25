@@ -13,6 +13,11 @@ const photo = (id: string, width = 1200, quality = 75) =>
 
 export const loveStory: LoveStory = {
   partnerNames: ['Alya', 'Adam'],
+  keepsakeNumber: 'No. 12',
+  footer: {
+    tagline: 'A quiet digital sanctuary and keepsake monograph crafted to hold moments, letters, and memory.',
+    note: 'Bound with care & bespoke grace',
+  },
   anniversaryDate: '2021-02-14',
 
   hero: {

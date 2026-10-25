@@ -9,7 +9,7 @@ export default function HeroSection() {
   const { hero, partnerNames, anniversaryDate } = loveStory
 
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section id="our-story" className="hero" aria-labelledby="hero-title">
       <div className="container hero__inner">
         <div className="hero__content">
           <p className="eyebrow">{hero.eyebrow}</p>
@@ -20,7 +20,7 @@ export default function HeroSection() {
           <p className="hero__intro">{hero.intro}</p>
           <p className="hero__date">Together since {formatDate(anniversaryDate)}</p>
           <div className="hero__actions">
-            <Button href="#letter">Read our story</Button>
+            <Button href="#the-letter">Read our story</Button>
           </div>
         </div>
 

@@ -6,7 +6,7 @@ export default function TimelineSection() {
   const { timeline } = loveStory
 
   return (
-    <section id="timeline" className="section" aria-labelledby="timeline-title">
+    <section id="milestones" className="section" aria-labelledby="timeline-title">
       <div className="container">
         <hr className="divider" />
         <div className="section__inner">

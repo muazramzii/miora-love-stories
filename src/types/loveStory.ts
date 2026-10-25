@@ -28,6 +28,8 @@ export interface HeroContent {
 
 export interface LoveStory {
   partnerNames: [string, string]
+  keepsakeNumber: string
+  footer: { tagline: string; note: string }
   /** ISO date (YYYY-MM-DD). */
   anniversaryDate: string
   hero: HeroContent

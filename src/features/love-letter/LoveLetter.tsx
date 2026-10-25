@@ -8,7 +8,7 @@ export default function LoveLetter() {
   const { letterTitle, letterBody, letterSignOff, partnerNames } = loveStory
 
   return (
-    <section id="letter" className="section" aria-labelledby="letter-title">
+    <section id="the-letter" className="section" aria-labelledby="letter-title">
       <div className="container">
         <hr className="divider" />
         <div className="section__inner">
