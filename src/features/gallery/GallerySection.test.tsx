@@ -3,19 +3,22 @@ import userEvent from '@testing-library/user-event'
 import GallerySection from './GallerySection'
 import { loveStory } from '../../data/loveStory'
 
-const { gallery } = loveStory
+const gallery = loveStory.gallery.plates
 const last = gallery.length - 1
 
 function openPhoto(index: number) {
-  return screen.getByRole('button', { name: `View larger: ${gallery[index].caption}` })
+  return screen.getByRole('button', { name: `View larger: ${gallery[index].title}` })
 }
 
 describe('GallerySection', () => {
   it('renders every photo with alt text and caption', () => {
     render(<GallerySection />)
-    for (const photo of gallery) {
-      expect(screen.getByAltText(photo.alt)).toBeInTheDocument()
-      expect(screen.getByText(photo.caption)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: loveStory.gallery.title })).toBeInTheDocument()
+    expect(screen.getByText(`Plate Collection // ${gallery.length} Selected Exposures`)).toBeInTheDocument()
+    for (const plate of gallery) {
+      expect(screen.getByAltText(plate.alt)).toBeInTheDocument()
+      expect(screen.getByText(plate.title)).toBeInTheDocument()
+      expect(screen.getByText(new RegExp(plate.place))).toBeInTheDocument()
     }
   })
 
@@ -29,8 +32,9 @@ describe('GallerySection', () => {
     const dialog = screen.getByRole('dialog')
     expect(dialog).toHaveAttribute('aria-modal', 'true')
     expect(within(dialog).getByAltText(gallery[2].alt)).toBeInTheDocument()
-    expect(within(dialog).getByText(gallery[2].caption)).toBeInTheDocument()
-    expect(within(dialog).getByText(`3 / ${gallery.length}`)).toBeInTheDocument()
+    expect(dialog).toHaveTextContent(gallery[2].detail)
+    expect(dialog).toHaveTextContent(gallery[2].title)
+    expect(dialog).toHaveTextContent(`3 of ${gallery.length}`)
     expect(document.body.style.overflow).toBe('hidden')
   })
 
@@ -42,13 +46,13 @@ describe('GallerySection', () => {
     const dialog = screen.getByRole('dialog')
 
     await user.click(within(dialog).getByRole('button', { name: 'Previous photo' }))
-    expect(within(dialog).getByText(gallery[last].caption)).toBeInTheDocument()
+    expect(dialog).toHaveTextContent(gallery[last].title)
 
     await user.click(within(dialog).getByRole('button', { name: 'Next photo' }))
-    expect(within(dialog).getByText(gallery[0].caption)).toBeInTheDocument()
+    expect(dialog).toHaveTextContent(gallery[0].title)
 
     await user.click(within(dialog).getByRole('button', { name: 'Next photo' }))
-    expect(within(dialog).getByText(gallery[1].caption)).toBeInTheDocument()
+    expect(dialog).toHaveTextContent(gallery[1].title)
   })
 
   it('supports arrow keys', async () => {
@@ -57,9 +61,9 @@ describe('GallerySection', () => {
     await user.click(openPhoto(0))
 
     await user.keyboard('{ArrowRight}')
-    expect(screen.getByRole('dialog')).toHaveTextContent(gallery[1].caption)
+    expect(screen.getByRole('dialog')).toHaveTextContent(gallery[1].title)
     await user.keyboard('{ArrowLeft}{ArrowLeft}')
-    expect(screen.getByRole('dialog')).toHaveTextContent(gallery[last].caption)
+    expect(screen.getByRole('dialog')).toHaveTextContent(gallery[last].title)
   })
 
   it('closes with the Close button, restoring scroll and focus', async () => {

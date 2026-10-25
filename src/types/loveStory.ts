@@ -19,11 +19,27 @@ export interface TimelineContent {
   chapters: TimelineChapter[]
 }
 
-export interface MemoryPhoto {
+export interface GalleryPlate {
   id: string
+  /** e.g. "Plate 01" */
+  plate: string
+  place: string
+  title: string
+  /** Longer description shown in the lightbox. */
+  detail: string
+  /** Shown in the mobile lightbox, e.g. "October 2021". */
+  date: string
+  /** "wide" is landscape (16:10), "tall" is portrait (4:5) in the editorial grid. */
+  shape: 'wide' | 'tall'
   src: string
   alt: string
-  caption: string
+}
+
+export interface GalleryContent {
+  eyebrow: string
+  title: string
+  subtitle: string
+  plates: GalleryPlate[]
 }
 
 export interface HeroContent {
@@ -75,7 +91,7 @@ export interface LoveStory {
   hero: HeroContent
   letter: LetterContent
   timeline: TimelineContent
-  gallery: MemoryPhoto[]
+  gallery: GalleryContent
   closingTitle: string
   closingMessage: string
 }

@@ -7,10 +7,10 @@ import { loveStory } from '../data/loveStory'
 
 // The components read from the central data object at render time, so edge cases
 // are tested by temporarily swapping its fields (no network or mocking needed).
-const original = { gallery: loveStory.gallery, chapters: loveStory.timeline.chapters }
+const original = { plates: loveStory.gallery.plates, chapters: loveStory.timeline.chapters }
 
 afterEach(() => {
-  loveStory.gallery = original.gallery
+  loveStory.gallery.plates = original.plates
   loveStory.timeline.chapters = original.chapters
 })
 
@@ -25,15 +25,15 @@ describe('accessibility regressions', () => {
   it('announces the caption and position when the photo changes', async () => {
     const user = userEvent.setup()
     render(<GallerySection />)
-    await user.click(screen.getByRole('button', { name: `View larger: ${loveStory.gallery[0].caption}` }))
+    await user.click(screen.getByRole('button', { name: `View larger: ${loveStory.gallery.plates[0].title}` }))
 
     const dialog = screen.getByRole('dialog', { name: 'Photo viewer' })
     const caption = dialog.querySelector('figcaption')!
     expect(caption).toHaveAttribute('aria-live', 'polite')
 
     await user.click(within(dialog).getByRole('button', { name: 'Next photo' }))
-    expect(caption).toHaveTextContent(loveStory.gallery[1].caption)
-    expect(caption).toHaveTextContent(`2 / ${loveStory.gallery.length}`)
+    expect(caption).toHaveTextContent(loveStory.gallery.plates[1].title)
+    expect(caption).toHaveTextContent(`2 of ${loveStory.gallery.plates.length}`)
   })
 
   it('gives every button and link an accessible name', () => {
@@ -45,7 +45,7 @@ describe('accessibility regressions', () => {
 
 describe('gallery edge cases', () => {
   it('renders an empty gallery without crashing and offers nothing to open', () => {
-    loveStory.gallery = []
+    loveStory.gallery.plates = []
     render(<GallerySection />)
     expect(screen.getByText('No memories have been added yet.')).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /view larger/i })).not.toBeInTheDocument()
@@ -54,7 +54,7 @@ describe('gallery edge cases', () => {
 
   it('hides Previous/Next for a single photo and ignores arrow keys', async () => {
     const user = userEvent.setup()
-    loveStory.gallery = [loveStory.gallery[0]]
+    loveStory.gallery.plates = [loveStory.gallery.plates[0]]
     render(<GallerySection />)
     await user.click(screen.getByRole('button', { name: /view larger/i }))
 
@@ -62,26 +62,26 @@ describe('gallery edge cases', () => {
     expect(within(dialog).queryByRole('button', { name: 'Next photo' })).not.toBeInTheDocument()
     expect(within(dialog).queryByRole('button', { name: 'Previous photo' })).not.toBeInTheDocument()
     await user.keyboard('{ArrowRight}{ArrowLeft}')
-    expect(within(dialog).getByAltText(loveStory.gallery[0].alt)).toBeInTheDocument()
+    expect(within(dialog).getByAltText(loveStory.gallery.plates[0].alt)).toBeInTheDocument()
   })
 
   it('shows a fallback in the lightbox if the enlarged image fails, and recovers on navigation', async () => {
     const user = userEvent.setup()
     render(<GallerySection />)
-    await user.click(screen.getByRole('button', { name: `View larger: ${loveStory.gallery[0].caption}` }))
+    await user.click(screen.getByRole('button', { name: `View larger: ${loveStory.gallery.plates[0].title}` }))
     const dialog = screen.getByRole('dialog')
 
-    fireEvent.error(within(dialog).getByAltText(loveStory.gallery[0].alt))
-    expect(within(dialog).getByRole('img', { name: loveStory.gallery[0].alt }).tagName).toBe('DIV')
+    fireEvent.error(within(dialog).getByAltText(loveStory.gallery.plates[0].alt))
+    expect(within(dialog).getByRole('img', { name: loveStory.gallery.plates[0].alt }).tagName).toBe('DIV')
 
     await user.click(within(dialog).getByRole('button', { name: 'Next photo' }))
-    expect(within(dialog).getByAltText(loveStory.gallery[1].alt).tagName).toBe('IMG')
+    expect(within(dialog).getByAltText(loveStory.gallery.plates[1].alt).tagName).toBe('IMG')
   })
 
   it('restores page scrolling when the lightbox unmounts without an explicit close', async () => {
     const user = userEvent.setup()
     const { unmount } = render(<GallerySection />)
-    await user.click(screen.getByRole('button', { name: `View larger: ${loveStory.gallery[0].caption}` }))
+    await user.click(screen.getByRole('button', { name: `View larger: ${loveStory.gallery.plates[0].title}` }))
     expect(document.body.style.overflow).toBe('hidden')
     unmount()
     expect(document.body.style.overflow).not.toBe('hidden')

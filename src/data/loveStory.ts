@@ -6,12 +6,9 @@ import { imageUrl } from './images'
  * Edit this file to change names, dates, the letter, the timeline,
  * the gallery and the closing message.
  *
- * Photos are free-licence images from Unsplash (Unsplash License);
+ * Photos are temporary Unsplash placeholders registered in ./images.ts;
  * credits are listed in the README.
  */
-const photo = (id: string, width = 1200, quality = 75) =>
-  `https://images.unsplash.com/photo-${id}?fm=jpg&q=${quality}&w=${width}&auto=format&fit=crop`
-
 export const loveStory: LoveStory = {
   partnerNames: ['Alya', 'Adam'],
   keepsakeNumber: 'No. 12',
@@ -147,44 +144,57 @@ export const loveStory: LoveStory = {
     ],
   },
 
-  gallery: [
-    {
-      id: 'balcony-coffee',
-      src: photo('1757840621498-87169d06d79e'),
-      alt: 'Two small cups of coffee on a round table on a balcony, with green leaves behind',
-      caption: 'Slow Sunday mornings',
-    },
-    {
-      id: 'roses',
-      src: photo('1771142480968-6036543055f7'),
-      alt: 'A bouquet of soft pink and cream roses',
-      caption: 'Flowers on an ordinary Tuesday',
-    },
-    {
-      id: 'beach',
-      src: photo('1635084666136-5d80b782d895'),
-      alt: 'A quiet beach at sunset with footprints in the golden sand',
-      caption: 'The evening by the sea',
-    },
-    {
-      id: 'window-cups',
-      src: photo('1635956541203-4625130f761f'),
-      alt: 'White coffee cups on a wooden table beside a soft, bright window',
-      caption: 'Our favourite corner',
-    },
-    {
-      id: 'dunes',
-      src: photo('1757924787010-80d15d292726', 800, 45), // fine sand texture compresses poorly: keep it small
-      alt: 'Rippled sand with a trail of footprints at sunset',
-      caption: 'Wherever the path goes',
-    },
-    {
-      id: 'golden-hour',
-      src: photo('1755884684493-16b21f4adf96'),
-      alt: 'Two hands reaching toward each other against a golden sunset',
-      caption: 'Hand in hand',
-    },
-  ],
+  gallery: {
+    eyebrow: 'Preserved Visual Monograph',
+    title: 'Glimpses of Light',
+    subtitle: 'Click any keepsake photograph to inspect the archival plate',
+    plates: [
+      {
+        id: 'plate-01',
+        plate: 'Plate 01',
+        place: 'Golden Hour in Chianti',
+        title: 'Autumn Walk',
+        detail: 'Golden hour through the Chianti olive groves, Tuscany',
+        date: 'October 2021',
+        shape: 'wide',
+        src: imageUrl('tuscanRoad', 1400),
+        alt: 'A winding road lined with cypress trees across rolling Tuscan hills under a glowing orange and pink sunset',
+      },
+      {
+        id: 'plate-02',
+        plate: 'Plate 02',
+        place: 'Hand in Hand',
+        title: 'Quiet Morning',
+        detail: 'Hand in hand over cappuccinos, Piazza Della Signoria',
+        date: 'November 2021',
+        shape: 'tall',
+        src: imageUrl('balconyCoffee', 1000),
+        alt: 'Two small cups of coffee on a round table on a balcony, with green leaves behind',
+      },
+      {
+        id: 'plate-03',
+        plate: 'Plate 03',
+        place: 'Wandering Florence',
+        title: 'Alleyways of Joy',
+        detail: 'Afternoon stroll down warm cobblestone streets of Pienza',
+        date: 'June 2022',
+        shape: 'tall',
+        src: imageUrl('stoneAlley', 1000),
+        alt: 'A narrow stone alley between old buildings, leading toward a small wooden door',
+      },
+      {
+        id: 'plate-04',
+        plate: 'Plate 04',
+        place: 'Sunset Picnic',
+        title: 'Summer Horizon',
+        detail: 'Picnic sunset along the panoramic ridge of Val d’Orcia',
+        date: 'September 2023',
+        shape: 'wide',
+        src: imageUrl('picnic', 1400),
+        alt: 'A wicker picnic basket with rosé wine and glasses resting on a cream blanket',
+      },
+    ],
+  },
 
   closingTitle: 'With all my love',
   closingMessage:
