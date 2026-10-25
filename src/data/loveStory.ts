@@ -196,7 +196,13 @@ export const loveStory: LoveStory = {
     ],
   },
 
-  closingTitle: 'With all my love',
-  closingMessage:
-    'Thank you for every ordinary day that you turned into a memory. This little place is only a small way of saying: I am so glad it is you.',
+  closing: {
+    eyebrow: 'Closing Inscription',
+    title: 'To a Lifetime of Small Wonders',
+    quote:
+      '“Thank you for being my anchor, my sweetest adventure, and my favorite reason to smile. I choose you yesterday, today, and for all our tomorrows.”',
+    monogram: 'A & A',
+    backLabel: 'Return to Beginning',
+    dedication: 'Miora Love Stories • A bespoke digital keepsake crafted with devotion for Alya & Adam',
+  },
 }

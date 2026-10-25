@@ -62,8 +62,8 @@ describe('App', () => {
 
   it('renders the closing message and a back-to-top link', () => {
     render(<App />)
-    const closing = screen.getByRole('region', { name: loveStory.closingTitle })
-    expect(within(closing).getByText(loveStory.closingMessage)).toBeInTheDocument()
-    expect(within(closing).getByRole('link', { name: 'Back to top' })).toHaveAttribute('href', '#top')
+    const closing = screen.getByRole('region', { name: loveStory.closing.title })
+    expect(within(closing).getByText(loveStory.closing.quote)).toBeInTheDocument()
+    expect(within(closing).getByRole('link', { name: loveStory.closing.backLabel })).toHaveAttribute('href', '#top')
   })
 })

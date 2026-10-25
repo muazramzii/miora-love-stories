@@ -84,6 +84,15 @@ export interface LetterContent {
   }
 }
 
+export interface ClosingContent {
+  eyebrow: string
+  title: string
+  quote: string
+  monogram: string
+  backLabel: string
+  dedication: string
+}
+
 export interface LoveStory {
   partnerNames: [string, string]
   keepsakeNumber: string
@@ -92,6 +101,5 @@ export interface LoveStory {
   letter: LetterContent
   timeline: TimelineContent
   gallery: GalleryContent
-  closingTitle: string
-  closingMessage: string
+  closing: ClosingContent
 }
