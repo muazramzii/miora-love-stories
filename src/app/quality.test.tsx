@@ -7,11 +7,11 @@ import { loveStory } from '../data/loveStory'
 
 // The components read from the central data object at render time, so edge cases
 // are tested by temporarily swapping its fields (no network or mocking needed).
-const original = { gallery: loveStory.gallery, timeline: loveStory.timeline }
+const original = { gallery: loveStory.gallery, chapters: loveStory.timeline.chapters }
 
 afterEach(() => {
   loveStory.gallery = original.gallery
-  loveStory.timeline = original.timeline
+  loveStory.timeline.chapters = original.chapters
 })
 
 describe('accessibility regressions', () => {
@@ -89,11 +89,11 @@ describe('gallery edge cases', () => {
 })
 
 describe('timeline edge cases', () => {
-  it('renders entries that have no image, and keeps long text', () => {
+  it('renders chapters that have no image, and keeps long text', () => {
     const long = 'A very long event title '.repeat(10).trim()
-    loveStory.timeline = [
-      { id: 'a', date: '1 January 2020', title: long, description: 'x'.repeat(300) },
-      { id: 'b', date: '2 February 2021', title: 'Second', description: 'Plain entry' },
+    loveStory.timeline.chapters = [
+      { id: 'a', chapter: 'Chapter 01', date: '1 January 2020', title: long, description: 'x'.repeat(300), place: 'Somewhere', icon: 'heart' },
+      { id: 'b', chapter: 'Chapter 02', date: '2 February 2021', title: 'Second', description: 'Plain entry', place: 'Elsewhere', icon: 'coffee' },
     ]
     render(<TimelineSection />)
     expect(screen.getAllByRole('listitem')).toHaveLength(2)
@@ -101,10 +101,10 @@ describe('timeline edge cases', () => {
     expect(screen.getByRole('heading', { name: long })).toBeInTheDocument()
   })
 
-  it('keeps entries in the order supplied, not sorted', () => {
-    loveStory.timeline = [
-      { id: 'late', date: '2024', title: 'Late', description: 'd' },
-      { id: 'early', date: '2020', title: 'Early', description: 'd' },
+  it('keeps chapters in the order supplied, not sorted', () => {
+    loveStory.timeline.chapters = [
+      { id: 'late', chapter: 'Chapter 02', date: '2024', title: 'Late', description: 'd', place: 'p', icon: 'heart' },
+      { id: 'early', chapter: 'Chapter 01', date: '2020', title: 'Early', description: 'd', place: 'p', icon: 'heart' },
     ]
     render(<TimelineSection />)
     const titles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent)

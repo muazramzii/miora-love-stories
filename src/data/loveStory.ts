@@ -75,34 +75,77 @@ export const loveStory: LoveStory = {
     },
   },
 
-  timeline: [
-    {
-      id: 'first-meet',
-      date: '14 February 2021',
-      title: 'The day we met',
-      description: 'A small café, two coffees and a conversation that refused to end.',
-    },
-    {
-      id: 'first-trip',
-      date: '9 July 2021',
-      title: 'Our first trip together',
-      description: 'A slow weekend by the sea, with sandy shoes and sunsets neither of us wanted to leave.',
-      image: photo('1635084666136-5d80b782d895', 900),
-      imageAlt: 'A quiet beach at sunset with a pair of footprints in the golden sand',
-    },
-    {
-      id: 'first-home',
-      date: '3 March 2022',
-      title: 'A place of our own',
-      description: 'Boxes everywhere, one good lamp, and a promise to make the small flat feel like home.',
-    },
-    {
-      id: 'new-year',
-      date: '1 January 2024',
-      title: 'A promise at midnight',
-      description: 'We counted down together and agreed to keep choosing each other, year after year.',
-    },
-  ],
+  timeline: {
+    eyebrow: 'Chronicles of Love',
+    title: 'The Chapters of Us',
+    subtitle: 'Every step, every turn, every glance that led us home.',
+    chapters: [
+      {
+        id: 'the-day-we-met',
+        chapter: 'Chapter 01',
+        date: 'October 14, 2021',
+        title: 'The Day We Met',
+        description:
+          'A gentle drizzle blanketed the cobblestones outside the cafe. We shared an umbrella, two cappuccinos with speckled ceramic mugs, and conversation that lasted until the cafe chairs were stacked for the evening.',
+        place: 'Piazza Della Signoria',
+        icon: 'coffee',
+        image: {
+          src: imageUrl('cafeCups', 900),
+          alt: 'White coffee cups on a wooden cafe table beside a soft, bright window',
+        },
+        fragment: 'Memory Fragment I',
+        caption: '“Where forever began”',
+      },
+      {
+        id: 'our-first-journey',
+        chapter: 'Chapter 02',
+        date: 'December 24, 2021',
+        title: 'Our First Journey',
+        description:
+          'Getting happily lost inside ancient sun-bleached archways. With cold fingers woven together and wind carrying the smell of fresh woodsmoke, we realized home was no longer a place, but a person.',
+        place: 'Southern Tuscany Roadtrip',
+        icon: 'compass',
+        image: {
+          src: imageUrl('stoneAlley', 900),
+          alt: 'A narrow stone alley between old buildings, leading toward a small wooden door',
+        },
+        fragment: 'Memory Fragment II',
+        caption: 'Pienza, Evening',
+      },
+      {
+        id: 'a-golden-summer-sunset',
+        chapter: 'Chapter 03',
+        date: 'July 19, 2023',
+        title: 'A Golden Summer Sunset',
+        description:
+          'A woolen blanket spread on the rolling hillside overlooking the distant shimmering valley. With bread, wine, and endless laughter, we watched the sky melt into violet and gold, dreaming about our next fifty years.',
+        place: 'Val d’Orcia Ridge',
+        icon: 'sunset',
+        image: {
+          src: imageUrl('picnic', 900),
+          alt: 'A wicker picnic basket with rosé wine and glasses resting on a cream blanket',
+        },
+        fragment: 'Memory Fragment III',
+        caption: 'Sundown at the Ridge',
+      },
+      {
+        id: 'three-years-and-beyond',
+        chapter: 'Chapter 04',
+        date: 'October 14, 2024',
+        title: 'Three Years & Beyond',
+        description:
+          'One thousand and ninety-six days of choosing you each morning. As we reflect on our path, we celebrate not just what we have experienced, but the vast, beautiful tapestry yet waiting to be woven.',
+        place: 'An Infinite Horizon',
+        icon: 'heart',
+        image: {
+          src: imageUrl('goldenHands', 900),
+          alt: 'Two hands reaching toward each other, silhouetted against a golden sunset by the water',
+        },
+        fragment: 'Memory Fragment IV',
+        caption: 'October 14, 2024',
+      },
+    ],
+  },
 
   gallery: [
     {

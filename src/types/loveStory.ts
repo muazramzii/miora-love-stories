@@ -1,11 +1,22 @@
-export interface TimelineItem {
+export interface TimelineChapter {
   id: string
+  chapter: string
   date: string
   title: string
   description: string
-  image?: string
-  /** Required when `image` is set. */
-  imageAlt?: string
+  place: string
+  icon: 'coffee' | 'compass' | 'sunset' | 'heart'
+  /** Optional: a chapter without a photo still renders cleanly. */
+  image?: { src: string; alt: string }
+  fragment?: string
+  caption?: string
+}
+
+export interface TimelineContent {
+  eyebrow: string
+  title: string
+  subtitle: string
+  chapters: TimelineChapter[]
 }
 
 export interface MemoryPhoto {
@@ -63,7 +74,7 @@ export interface LoveStory {
   footer: { tagline: string; note: string }
   hero: HeroContent
   letter: LetterContent
-  timeline: TimelineItem[]
+  timeline: TimelineContent
   gallery: MemoryPhoto[]
   closingTitle: string
   closingMessage: string

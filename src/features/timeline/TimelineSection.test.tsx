@@ -2,28 +2,32 @@ import { render, screen, within } from '@testing-library/react'
 import TimelineSection from './TimelineSection'
 import { loveStory } from '../../data/loveStory'
 
-describe('TimelineSection', () => {
-  it('renders every entry in the supplied order', () => {
-    render(<TimelineSection />)
-    const items = within(screen.getByRole('list')).getAllByRole('listitem')
-    expect(items).toHaveLength(loveStory.timeline.length)
+const { timeline } = loveStory
 
-    loveStory.timeline.forEach((entry, index) => {
+describe('TimelineSection', () => {
+  it('renders the section heading and every chapter in the supplied order', () => {
+    render(<TimelineSection />)
+    expect(screen.getByRole('heading', { level: 2, name: timeline.title })).toBeInTheDocument()
+
+    const items = within(screen.getByRole('list')).getAllByRole('listitem')
+    expect(items).toHaveLength(timeline.chapters.length)
+    expect(timeline.chapters).toHaveLength(4)
+
+    timeline.chapters.forEach((chapter, index) => {
       const item = within(items[index])
-      expect(item.getByText(entry.date)).toBeInTheDocument()
-      expect(item.getByRole('heading', { name: entry.title })).toBeInTheDocument()
-      expect(item.getByText(entry.description)).toBeInTheDocument()
+      expect(item.getByText(`${chapter.chapter} • ${chapter.date}`)).toBeInTheDocument()
+      expect(item.getByRole('heading', { level: 3, name: chapter.title })).toBeInTheDocument()
+      expect(item.getByText(chapter.description)).toBeInTheDocument()
+      expect(item.getByText(chapter.place)).toBeInTheDocument()
     })
   })
 
-  it('shows an image only for entries that have one, with alt text', () => {
+  it('shows each photo with alt text and its memory-fragment caption', () => {
     render(<TimelineSection />)
-    const withImage = loveStory.timeline.filter((entry) => entry.image)
-    const images = screen.getAllByRole('img')
-    expect(images).toHaveLength(withImage.length)
-    for (const entry of withImage) {
-      expect(entry.imageAlt).toBeTruthy()
-      expect(screen.getByAltText(entry.imageAlt!)).toBeInTheDocument()
+    for (const chapter of timeline.chapters) {
+      expect(screen.getByAltText(chapter.image!.alt)).toBeInTheDocument()
+      expect(screen.getByText(chapter.fragment!)).toBeInTheDocument()
+      expect(screen.getByText(chapter.caption!)).toBeInTheDocument()
     }
   })
 })

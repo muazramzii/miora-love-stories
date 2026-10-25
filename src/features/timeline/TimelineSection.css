@@ -1,102 +1,267 @@
+/*
+ * The Chapters of Us. Mobile: single column with a thread on the left.
+ * Desktop (>=768px): zig-zag around a central thread with a pin per chapter.
+ */
 .timeline {
-  max-width: 50rem;
-  margin: var(--space-7) auto 0;
-  padding: 0;
+  padding-block: var(--space-md) var(--space-lg);
+}
+
+.timeline__header {
+  margin-bottom: var(--space-lg);
+}
+
+.chapters {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 var(--space-lg);
   list-style: none;
 }
 
-/* Mobile: single column with a thin rule on the left */
-.timeline__item {
-  position: relative;
-  padding: 0 0 var(--space-7) var(--space-5);
-  border-left: 1px solid var(--color-border-strong);
-}
-
-.timeline__item:last-child {
-  padding-bottom: 0;
-}
-
-.timeline__item::before {
+/* Thread */
+.chapters::before {
   content: '';
   position: absolute;
-  top: 0.45rem;
-  left: -4px;
-  width: 7px;
-  height: 7px;
+  left: 11px;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  width: 1.5px;
+  background: rgb(212 194 195 / 55%);
+}
+
+.chapter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.chapter + .chapter {
+  margin-top: var(--space-lg);
+}
+
+/* Pin (mobile: small dot on the thread) */
+.chapter__pin {
+  position: absolute;
+  left: -30px;
+  top: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--surface-lowest);
+  box-shadow: var(--shadow-sm);
 }
 
-.timeline__body {
-  min-width: 0;
+.chapter__pin::after {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--primary);
 }
 
-.timeline__date {
-  margin-bottom: var(--space-2);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-medium);
-  letter-spacing: var(--tracking-eyebrow);
+.chapter__label {
+  font-size: var(--fs-label-sm);
+  line-height: 0.875rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--primary);
 }
 
-.timeline__title {
-  font-size: var(--text-xl);
+.chapter__title {
+  margin: var(--space-xs) 0;
+  font-size: var(--fs-headline-md);
+  line-height: var(--lh-headline-md);
+  font-weight: 500;
 }
 
-.timeline__text {
-  max-width: 34rem;
-  margin-top: var(--space-2);
-  color: var(--color-text-muted);
+.chapter__description {
+  color: var(--on-surface-variant);
+  line-height: 1.7;
 }
 
-.timeline__image {
-  width: 100%;
+.chapter__place {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  font-size: var(--fs-label-sm);
+  line-height: 0.875rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.chapter__media {
+  margin: var(--space-xs) 0 0;
+}
+
+.chapter__mat {
   max-width: 28rem;
-  height: auto;
-  aspect-ratio: 3 / 2;
-  margin-top: var(--space-4);
+  padding: var(--space-sm);
+  border-radius: var(--radius-xl);
+  background: var(--surface-lowest);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base);
+}
+
+.chapter__image {
+  width: 100%;
+  height: 11rem;
   object-fit: cover;
-  border-radius: var(--radius-sm);
-  background: var(--color-ivory-deep);
+  border-radius: var(--radius);
+  background: var(--surface-container);
+}
+
+.chapter__caption {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-xs) 0;
+  font-size: var(--fs-label-sm);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label-sm);
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.chapter__quote {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--fs-body-sm);
+  color: var(--primary);
+  text-align: right;
+}
+
+/* Final chapter: filled pin, as in the mobile design */
+.chapter--last .chapter__pin {
+  background: var(--primary);
+}
+
+.chapter--last .chapter__pin::after {
+  width: 0.375rem;
+  height: 0.375rem;
+  background: var(--on-primary);
 }
 
 @media (min-width: 48rem) {
-  .timeline__item {
-    display: grid;
-    grid-template-columns: 11rem minmax(0, 1fr);
-    gap: var(--space-6);
-    padding-left: 0;
-    border-left: 0;
+  .timeline {
+    padding-block: var(--space-xxl);
   }
 
-  /* Date on the left, thin rule and dot between the columns */
-  .timeline__item::before {
-    top: 0.45rem;
-    left: calc(11rem + var(--space-6) / 2 - 3px);
+  .timeline__header {
+    margin-bottom: var(--space-xxl);
   }
 
-  .timeline__item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: calc(11rem + var(--space-6) / 2);
+  .chapters {
+    padding: 0;
+  }
+
+  .chapters::before {
+    left: 50%;
+    top: var(--space-md);
+    bottom: var(--space-md);
     width: 1px;
-    background: var(--color-border-strong);
+    background: var(--outline-variant);
+    transform: translateX(-50%);
   }
 
-  .timeline__item:last-child::after {
-    bottom: auto;
-    height: 0.45rem;
+  .chapter {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: 'text media';
+    align-items: center;
+    gap: var(--space-xl);
   }
 
-  .timeline__item::before {
-    z-index: 1;
+  .chapter + .chapter {
+    margin-top: var(--space-xxl);
   }
 
-  .timeline__date {
-    margin: 0.2rem 0 0;
+  .chapter:nth-child(even) {
+    grid-template-areas: 'media text';
+  }
+
+  .chapter__text {
+    grid-area: text;
+    padding-right: var(--space-xl);
     text-align: right;
+  }
+
+  .chapter:nth-child(even) .chapter__text {
+    padding-right: 0;
+    padding-left: var(--space-xl);
+    text-align: left;
+  }
+
+  .chapter__media {
+    grid-area: media;
+    margin: 0;
+    padding-left: var(--space-xl);
+  }
+
+  .chapter:nth-child(even) .chapter__media {
+    padding-left: 0;
+    padding-right: var(--space-xl);
+    justify-self: end;
+  }
+
+  .chapter__description {
+    max-width: 28rem;
+    margin-left: auto;
+  }
+
+  .chapter:nth-child(even) .chapter__description {
+    margin-left: 0;
+  }
+
+  .chapter__title {
+    margin: var(--space-xs) 0 var(--space-sm);
+    font-size: var(--fs-headline-lg);
+    line-height: var(--lh-headline-lg);
+  }
+
+  .chapter__place {
+    justify-content: flex-end;
+  }
+
+  .chapter:nth-child(even) .chapter__place {
+    justify-content: flex-start;
+  }
+
+  .chapter__pin {
+    left: 50%;
+    top: 50%;
+    width: 2rem;
+    height: 2rem;
+    transform: translate(-50%, -50%);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chapter__pin::after,
+  .chapter--last .chapter__pin::after {
+    width: 0.75rem;
+    height: 0.75rem;
+    background: var(--primary);
+  }
+
+  .chapter--last .chapter__pin {
+    background: var(--surface-lowest);
+  }
+
+  .chapter__mat {
+    border-radius: var(--radius);
+  }
+
+  .chapter__mat:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .chapter__image {
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 }
