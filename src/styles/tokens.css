@@ -1,91 +1,111 @@
 /*
- * Miora Love Stories - design tokens (Minimal Elegant)
+ * Miora Love Stories - design tokens
+ * Source of truth: the approved Stitch design (rendered HTML values).
  *
- * Breakpoints (CSS variables cannot be used inside @media, so they are
- * documented here and used in responsive.css):
- *   sm 36rem (576px) | md 48rem (768px) | lg 64rem (1024px) | xl 90rem (1440px)
+ * Breakpoints (CSS variables cannot be used inside @media):
+ *   md 48rem (768px)  | lg 64rem (1024px)
+ *   Below md is the mobile composition (bottom tab bar, single column).
  */
 :root {
-  /* Brand colours */
-  --color-ivory: #f8f4ef;
-  --color-burgundy: #684648;
-  --color-rose: #c9a5a0;
-  --color-taupe: #a39489;
-  --color-ink: #302a29;
+  /* Surfaces */
+  --surface: #fff8f6;
+  --surface-lowest: #ffffff;
+  --surface-low: #fdf1ef;
+  --surface-container: #f7ebe9;
+  --surface-high: #f1e6e4;
+  --surface-highest: #ebe0de;
+  --surface-dim: #e3d8d6;
+  --inverse-surface: #352f2e;
 
-  /* Derived colours */
-  --color-ivory-deep: #efe8e0; /* subtle panel / fallback background */
-  --color-ink-soft: #5c524f; /* secondary text, ~7:1 on ivory */
-  --color-burgundy-dark: #543638; /* hover state */
+  /* Text and brand */
+  --on-surface: #201a19;
+  --on-surface-variant: #504444;
+  --primary: #4f3032;
+  --on-primary: #ffffff;
+  --primary-container: #684648;
+  --on-primary-container: #e3b6b8;
+  --secondary: #695c52;
+  --secondary-container: #eedcd0;
+  --dusty-rose: #c9a5a0;
+  --on-tertiary-container: #deb8b3;
 
-  /* Semantic colours */
-  --color-bg: var(--color-ivory);
-  --color-text: var(--color-ink);
-  --color-text-muted: var(--color-ink-soft);
-  --color-accent: var(--color-burgundy);
-  --color-focus: var(--color-burgundy);
-  --color-border: rgb(163 148 137 / 45%); /* taupe, thin lines */
-  --color-border-strong: var(--color-taupe);
+  /* Lines */
+  --outline: #827474;
+  --outline-variant: #d4c2c3;
+  --hairline: rgb(212 194 195 / 40%);
 
-  /* Typography */
+  /* Typography families */
   --font-display: 'Playfair Display', 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-  --text-2xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
-  --text-hero: clamp(2.75rem, 1.8rem + 5vw, 5.5rem);
+  /* Type scale (size / line-height / tracking), from DESIGN.md */
+  --fs-display-lg: 3.5rem; /* 56 / 64 */
+  --lh-display-lg: 4rem;
+  --fs-display-md: 2.5rem; /* 40 / 48 */
+  --lh-display-md: 3rem;
+  --fs-headline-lg: 2rem; /* 32 / 40 */
+  --lh-headline-lg: 2.5rem;
+  --fs-headline-md: 1.5rem; /* 24 / 32 */
+  --lh-headline-md: 2rem;
+  --fs-headline-sm: 1.25rem; /* 20 / 28 */
+  --lh-headline-sm: 1.75rem;
+  --fs-body-lg: 1.125rem; /* 18 / 28 */
+  --lh-body-lg: 1.75rem;
+  --fs-body-md: 0.9375rem; /* 15 / 24 */
+  --lh-body-md: 1.5rem;
+  --fs-body-sm: 0.8125rem; /* 13 / 20 */
+  --lh-body-sm: 1.25rem;
+  --fs-label-lg: 0.875rem; /* 14 / 20 */
+  --fs-label-md: 0.75rem; /* 12 / 16 */
+  --fs-label-sm: 0.6875rem; /* 11 / 14 */
 
-  --leading-tight: 1.1;
-  --leading-snug: 1.3;
-  --leading-body: 1.7;
+  --tracking-label-sm: 0.1em;
+  --tracking-label-md: 0.08em;
+  --tracking-label-lg: 0.02em;
+  --tracking-wide: 0.1em;
 
-  --tracking-eyebrow: 0.22em;
-  --tracking-button: 0.08em;
+  /* Spacing (design scale) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-xxl: 4rem;
+  --gutter: 1.5rem;
+  --margin: 1.25rem; /* mobile page margin; 3rem from md */
 
-  --weight-regular: 400;
-  --weight-medium: 500;
-
-  /* Spacing (4px base) */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
-  --space-8: 4rem;
-  --space-9: 6rem;
-  --space-10: 8rem;
-
-  --gutter: var(--space-5);
-  --section-space: clamp(var(--space-8), 12vw, var(--space-10));
-
-  /* Content widths */
+  /* Widths */
+  --width-page: 75rem; /* 1200px */
+  --width-letter: 53.75rem; /* 860px */
   --width-narrow: 40rem;
-  --width-content: 68rem;
-  --width-wide: 80rem;
 
   /* Sizing */
-  --touch-target: 2.75rem; /* 44px */
-  --nav-height: 4.5rem;
+  --touch-target: 2.75rem;
+  --header-height: 4rem; /* 5rem from md */
+  --tabbar-height: 4rem;
 
-  /* Radii: kept small and restrained */
-  --radius-none: 0;
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-pill: 999px;
+  /* Shape */
+  --radius-sm: 0.125rem;
+  --radius: 0.25rem;
+  --radius-xl: 0.5rem;
 
-  /* Shadows: soft and warm, used sparingly */
-  --shadow-soft: 0 1px 2px rgb(48 42 41 / 6%), 0 8px 24px rgb(48 42 41 / 8%);
-  --shadow-image: 0 20px 40px -24px rgb(104 70 72 / 35%);
+  /* Elevation: tinted, diffused (DESIGN.md) */
+  --shadow-sm: 0 1px 2px rgb(104 70 72 / 6%), 0 2px 8px rgb(104 70 72 / 5%);
+  --shadow-md: 0 4px 12px -2px rgb(48 42 41 / 6%), 0 8px 20px -4px rgb(104 70 72 / 8%);
+  --shadow-lg: 0 12px 32px -4px rgb(104 70 72 / 8%), 0 4px 12px -2px rgb(48 42 41 / 4%);
+  --shadow-xl: 0 20px 44px -8px rgb(104 70 72 / 14%), 0 6px 16px -2px rgb(48 42 41 / 6%);
 
   /* Motion */
   --duration-fast: 150ms;
   --duration-base: 250ms;
+  --duration-slow: 500ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --transition-base: var(--duration-base) var(--ease-standard);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --margin: 3rem;
+    --header-height: 5rem;
+  }
 }
