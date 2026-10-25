@@ -117,7 +117,7 @@
 .hero__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgb(79 48 50 / 45%), transparent 45%);
+  background: linear-gradient(to top, rgb(79 48 50 / 65%), transparent 50%);
   pointer-events: none;
 }
 
@@ -267,6 +267,8 @@
 
   .hero__memory-title {
     margin: 0 0 var(--space-xs);
+    font-family: var(--font-display);
+    color: var(--primary);
     font-size: var(--fs-headline-sm);
     line-height: var(--lh-headline-sm);
     font-weight: 600;

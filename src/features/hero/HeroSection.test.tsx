@@ -11,7 +11,7 @@ describe('HeroSection', () => {
     expect(screen.getByText(hero.dateline)).toBeInTheDocument()
     expect(screen.getByText(hero.subtitle)).toBeInTheDocument()
     expect(screen.getByText(hero.callout.quote)).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 3, name: hero.memory.title })).toBeInTheDocument()
+    expect(screen.getByText(hero.memory.title)).toBeInTheDocument()
     expect(screen.getByText(hero.portrait.plate)).toBeInTheDocument()
   })
 

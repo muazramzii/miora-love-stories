@@ -22,7 +22,7 @@ export default function HeroSection() {
         <p className="hero__partners">{couple}</p>
         <p className="hero__subtitle">{hero.subtitle}</p>
 
-        <aside className="hero__callout" aria-label={hero.callout.label}>
+        <div className="hero__callout">
           <div className="hero__callout-card">
             <p className="label-sm hero__callout-label">{hero.callout.label}</p>
             <blockquote className="hero__quote">{hero.callout.quote}</blockquote>
@@ -32,7 +32,7 @@ export default function HeroSection() {
             <span className="eyebrow">{hero.location.label}</span>
             <span>{hero.location.value}</span>
           </div>
-        </aside>
+        </div>
 
         <figure className="hero__portrait">
           <div className="hero__mat">
@@ -66,7 +66,7 @@ export default function HeroSection() {
         <div className="hero__aside">
           <div className="hero__memory">
             <span className="eyebrow">{hero.memory.label}</span>
-            <h3 className="hero__memory-title">{hero.memory.title}</h3>
+            <p className="hero__memory-title">{hero.memory.title}</p>
             <p className="hero__memory-text">{hero.memory.text}</p>
             <p className="hero__memory-note">
               <Icon name="flower" size={18} />

@@ -6,18 +6,22 @@ Miora Love Stories is the first mini-website product under **Miora Studio**: a m
 
 ## Status
 
-**Phase 2 (core features) complete.** The site has a hero, an interactive love letter, a relationship timeline, a memory gallery with lightbox, and a closing message. All content is fictional sample data in `src/data/loveStory.ts` (names, dates, letter, timeline, gallery, closing message), typed by `src/types/loveStory.ts`. Edit that one file to change the story.
+The site implements the approved Stitch UI/UX design: a hero, "The Sealed Letter", "The Chapters of Us" timeline, "Glimpses of Light" gallery with lightbox, and "To a Lifetime of Small Wonders" closing, with a desktop layout and a deliberate mobile layout (bottom tab bar). All content is fictional sample data for the couple Alya and Adam.
 
-Fonts (Playfair Display, Inter) load from Google Fonts with system fallbacks. Photos load from Unsplash (Unsplash License); a CSS fallback is shown if one fails.
+Edit `src/data/loveStory.ts` (typed by `src/types/loveStory.ts`) to change names, dates, the letter, chapters, plates, captions and the closing message. The design tokens live in `src/styles/tokens.css`.
 
-### Photo credits
+### Temporary placeholder photography (replace before public deployment)
 
-Hero and gallery photos by Aurela Redenica, Aniki Photos, Eduardo Drapier, Sixteen Miles Out, Duc Van and Stefanie Jockschat, via [Unsplash](https://unsplash.com).
+The approved design used generated images that are **not** reused here. The site currently uses free [Unsplash](https://unsplash.com) photos (Unsplash License) with matching crops. They are **placeholders**: verify their licences or replace them with real photography before a public portfolio deployment.
+
+- All photo references live in one place: `src/data/images.ts` (one entry per photo, with the photographer credit). Swap an `id` there, or point `imageUrl` at local files, to replace a photo everywhere.
+- Photographers: Luca Micheli (Tuscan road), Rafael Garcin (stone alley), Redd Francisco (picnic), Sixteen Miles Out (cafe cups), Duc Van (balcony coffee), Aurela Redenica (golden hands).
+- Photos and the Google Fonts (Playfair Display, Inter) load over the network, with CSS fallbacks if they fail.
 
 ## Technology stack
 
 - React + TypeScript + Vite
-- Plain CSS with reusable CSS variables (`src/styles/global.css`)
+- Plain CSS with design tokens as CSS variables (`src/styles/tokens.css`)
 - Vitest + React Testing Library
 - ESLint (typescript-eslint)
 - GitHub Actions CI
@@ -63,24 +67,23 @@ Before committing, run `npm run lint && npm run typecheck && npm test && npm run
 ```
 src/
   app/          App shell and app-level CSS
-  components/   layout/ (Navigation, Footer) and ui/ (Button, SectionHeading)
+  components/   layout/ (Navigation, BottomNav, Footer) and ui/ (Icon)
   features/     hero, love-letter, timeline, gallery (with Lightbox), closing
-  hooks/        custom React hooks
-  data/         loveStory.ts: all fictional sample content
+  hooks/        useActiveSection (scroll-spy for the navigation)
+  data/         loveStory.ts (content), images.ts (placeholder photos), navigation.ts
   types/        loveStory.ts: content types
-  utils/        small helpers (date formatting)
-  styles/       tokens.css (design tokens), global.css, responsive.css
-  assets/       images and other static assets
+  styles/       tokens.css (design tokens) and global.css
   test/         test setup
 ```
 
 ## Features
 
-- Romantic hero section
-- Interactive love letter
-- Relationship timeline
-- Memory photo gallery with accessible lightbox (Escape, arrow keys, focus return, scroll lock)
-- Closing message with back-to-top link
+- Editorial hero: 3-column collage on desktop, centred composition on mobile
+- Sealed letter: closed envelope and opened letter states, with "Fold & Reseal"
+- Chapters timeline: zig-zag around a central thread on desktop, left thread on mobile
+- Gallery of framed plates with an accessible lightbox (Escape, arrow keys, swipe, focus trap and return, scroll lock)
+- Closing inscription with a Return to Beginning link
+- Scroll-spy header navigation and a mobile bottom tab bar
 
 ## Privacy
 
