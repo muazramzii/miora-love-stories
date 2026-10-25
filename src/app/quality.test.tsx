@@ -17,7 +17,7 @@ afterEach(() => {
 describe('accessibility regressions', () => {
   it('exposes the letter as one landmark, and no empty region while it is closed', () => {
     render(<App />)
-    const named = screen.getAllByRole('region', { name: loveStory.letterTitle })
+    const named = screen.getAllByRole('region', { name: loveStory.letter.title })
     expect(named).toHaveLength(1)
     expect(named[0].tagName).toBe('SECTION')
   })

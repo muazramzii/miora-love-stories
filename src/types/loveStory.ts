@@ -34,14 +34,35 @@ export interface HeroContent {
   }
 }
 
+export interface LetterContent {
+  eyebrow: string
+  title: string
+  subtitle: string
+  sealed: {
+    monogram: string
+    label: string
+    to: string
+    text: string
+    openLabel: string
+  }
+  paper: {
+    folio: string
+    date: string
+    greeting: string
+    heading: string
+    paragraphs: string[]
+    signoff: string
+    signature: string
+    foldLabel: string
+  }
+}
+
 export interface LoveStory {
   partnerNames: [string, string]
   keepsakeNumber: string
   footer: { tagline: string; note: string }
   hero: HeroContent
-  letterTitle: string
-  letterBody: string[]
-  letterSignOff: string
+  letter: LetterContent
   timeline: TimelineItem[]
   gallery: MemoryPhoto[]
   closingTitle: string

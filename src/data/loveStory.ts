@@ -48,13 +48,32 @@ export const loveStory: LoveStory = {
     },
   },
 
-  letterTitle: 'To the one who stayed',
-  letterBody: [
-    'I still remember how quiet the café was the day we met, and how loud my heart felt. I did not know then that an ordinary afternoon could quietly become the beginning of everything.',
-    'You have a way of making small things feel like occasions: a shared umbrella, a late supper, a song hummed off-key while the kettle boils. Somehow those are the moments I hold closest.',
-    'Thank you for your patience on my difficult days and your laughter on my good ones. Whatever comes next, I would like to walk through it beside you.',
-  ],
-  letterSignOff: 'Always yours, Adam',
+  letter: {
+    eyebrow: 'Archival Document • Private Correspondence',
+    title: 'The Sealed Letter',
+    subtitle: 'A sacred note handwritten for the three-year milestone',
+    sealed: {
+      monogram: 'A&A',
+      label: 'Strictly Confidential',
+      to: 'To My Dearest Alya',
+      text: 'This envelope was sealed on October 14, 2024. Break the seal to unveil Adam’s reflections on the past three years.',
+      openLabel: 'Break Seal & Read',
+    },
+    paper: {
+      folio: 'Keepsake Monograph No. 12',
+      date: 'October 14, 2024',
+      greeting: 'Alya,',
+      heading: 'To the One Who Holds My Heart',
+      paragraphs: [
+        'I remember with startling clarity the rain that fell across the cafe awnings three years ago today. You were shaking raindrops from your hair, laughing at the unexpected deluge, and right in that sudden, unchoreographed second, the world seemed to grow quiet and true.',
+        'These thirty-six months together have taught me that love isn’t grand declarations made from mountaintops; it lives quietly in the shared morning coffees, in your hand resting in mine across small bistro tables, and in the unspoken glances that tell me everything will be gentle and warm.',
+        'Thank you for being my haven and my greatest inspiration. Wherever our path wanders in the years waiting ahead—through ancient cobblestones or quiet sunlit hills—my heart will always find its compass in you.',
+      ],
+      signoff: 'Bound in devotion,',
+      signature: 'Adam',
+      foldLabel: 'Fold & Reseal Letter',
+    },
+  },
 
   timeline: [
     {
