@@ -1,4 +1,5 @@
 import type { LoveStory } from '../types/loveStory'
+import { imageUrl } from './images'
 
 /*
  * Fictional sample content for the portfolio demo. Not real people.
@@ -18,16 +19,32 @@ export const loveStory: LoveStory = {
     tagline: 'A quiet digital sanctuary and keepsake monograph crafted to hold moments, letters, and memory.',
     note: 'Bound with care & bespoke grace',
   },
-  anniversaryDate: '2021-02-14',
 
   hero: {
-    eyebrow: 'A story made with love',
-    headline: 'Our little story',
-    intro: 'Every quiet morning, every shared laugh, kept in one small place just for the two of us.',
-    image: {
-      src: photo('1755884684493-16b21f4adf96'),
-      alt: 'Two hands reaching toward each other, silhouetted against a golden sunset by the water',
-      credit: 'Photo: Aurela Redenica / Unsplash',
+    badge: 'A Bespoke Keepsake',
+    dateline: 'October 14, 2021 — Three Years of Forever',
+    title: 'Our Little Story',
+    subtitle: 'A celebration of ordinary moments made extraordinary together.',
+    callout: {
+      label: 'Chapter I • Genesis',
+      quote:
+        '“Here is a gentle space carved out of time, holding the laughter we shared in quiet alleys, the promises spoken in whispers, and every small chapter that brought us here.”',
+      signature: 'A & A',
+    },
+    location: { label: 'Location', value: 'Florence & Chianti, Tuscany' },
+    memory: {
+      label: 'Archived Memory',
+      title: 'Golden Hour in the Hills',
+      text: 'A reminder that love is not counted by days, but by the quiet peace felt when hands find each other naturally.',
+      note: 'Preserved forever',
+    },
+    cta: 'Read The Love Letter',
+    portrait: {
+      src: imageUrl('tuscanRoad', 1000),
+      alt: 'A winding road lined with cypress trees across rolling Tuscan hills under a glowing orange and pink sunset',
+      tag: 'Keepsake Edition',
+      place: 'Tuscany, Autumn',
+      plate: 'Plate 01 // Memory Folio',
     },
   },
 
